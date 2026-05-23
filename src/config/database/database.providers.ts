@@ -1,0 +1,30 @@
+import { ConfigService } from '@nestjs/config';
+import { DataSource } from 'typeorm';
+import { DATABASE_SOURCE } from '../constants/database-source';
+
+const toBoolean = (value: string | undefined, fallback: boolean): boolean => {
+  if (value === undefined) return fallback;
+  return ['true', '1', 'yes', 'on'].includes(value.toLowerCase());
+};
+
+export const databaseProviders = [
+  {
+    provide: DATABASE_SOURCE,
+    inject: [ConfigService],
+    useFactory: async (configService: ConfigService) => {
+      const dataSource = new DataSource({
+        type: 'mysql',
+        host: configService.get<string>('DB_HOST', 'localhost'),
+        port: Number(configService.get<string>('DB_PORT', '3360')),
+        username: configService.get<string>('DB_USERNAME', 'root'),
+        password: configService.get<string>('DB_PASSWORD', 'root'),
+        database: configService.get<string>('DB_NAME', 'gerenciamentoaluno'),
+        entities: [__dirname + '/../../**/*.entity{.ts,.js}'],
+        synchronize: true, 
+        logging: true
+      });
+
+      return dataSource.initialize();
+    },
+  },
+];
