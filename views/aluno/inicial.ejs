@@ -43,10 +43,10 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nome</th>
-                                <th>Preço</th>
-                                <th>Fornecedor</th>
-                                <th>Ativo</th>
-                                <th>Criado em</th>
+                                <th>CPF</th>
+                                <th>Nivel Atual</th>
+                                <th>Data de Nascimento</th>
+                                <th>Data de Cadastro</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -56,12 +56,13 @@
                                 <tr>
                                     <td><%= index + 1 %></td>
                                     <td><%= alunos[index].nome %></td>
-                                    <td><%= moneyFormat(alunos[index].preco) %></td>
-                                    <td><%= alunos[index]?.fornecedor?.nome ? alunos[index]?.fornecedor?.nome : '-' %></td>
+                                    <td><%= alunos[index].cpf %></td>
+                                    <td><%= alunos[index]?.nivelAtual?.nome ? alunos[index]?.nivelAtual : '-' %></td>
+                                    <td><%= alunos[index]?.fornecedor.nome ? alunos[index]?.fornecedor.nome : '-' %></td>
                                     <td>
                                         <% if (alunos[index].ativo) { %>
 
-                                            <span class="badge badge-primary">Ativo</span>
+                                            <span class="badge badge-primary">Iniciante</span>
 
                                         <% } else { %>
 
