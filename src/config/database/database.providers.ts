@@ -15,7 +15,7 @@ export const databaseProviders = [
       const dataSource = new DataSource({
         type: 'mysql',
         host: configService.get<string>('DB_HOST', 'localhost'),
-        port: Number(configService.get<string>('DB_PORT', '3360')),
+        port: Number(configService.get<string>('DB_PORT', '3307')),
         username: configService.get<string>('DB_USERNAME', 'root'),
         password: configService.get<string>('DB_PASSWORD', 'root'),
         database: configService.get<string>('DB_NAME', 'gerenciamentoaluno'),
