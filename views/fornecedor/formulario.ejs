@@ -1,0 +1,66 @@
+<div class="row page-titles mx-0">
+    <div class="col-sm-6">
+        <div class="welcome-text">
+            <h4><%= titulo %></h4>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+
+                <form method="POST">
+
+                    <div class="form-group">
+                        <label>Nome</label>
+
+                        <input
+                            type="text"
+                            name="nome"
+                            class="form-control"
+                            value="<%= fornecedor?.nome || '' %>"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Status</label>
+
+                        <select
+                            name="ativo"
+                            class="form-control"
+                        >
+                            <option
+                                value="true"
+                                <%= fornecedor?.ativo ? 'selected' : '' %>>
+                                Ativo
+                            </option>
+
+                            <option
+                                value="false"
+                                <%= fornecedor && !fornecedor.ativo ? 'selected' : '' %>>
+                                Inativo
+                            </option>
+                        </select>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary">
+                        Salvar
+                    </button>
+
+                    <a
+                        href="/fornecedores"
+                        class="btn btn-secondary">
+                        Cancelar
+                    </a>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
