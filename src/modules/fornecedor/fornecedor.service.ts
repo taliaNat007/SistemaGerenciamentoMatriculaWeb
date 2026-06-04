@@ -14,32 +14,34 @@ export class FornecedorService {
         });
     }
 
-    async create(dados: Partial<Fornecedor>): Promise<Fornecedor> {
+    async create(dados: any): Promise<Fornecedor> {
+
         const fornecedor = Fornecedor.create({
             nome: dados.nome,
-            ativo: dados.ativo,
+            ativo: dados.ativo === '1'
         });
-
+    
         return fornecedor.save();
     }
 
     async update(
         id: number,
-        dados: Partial<Fornecedor>
+        dados: any
     ): Promise<void> {
-
+    
         const fornecedor = await this.findOne(id);
-
+    
         if (!fornecedor) {
             throw new Error('Fornecedor não encontrado!');
         }
-
-        fornecedor.nome = dados.nome ?? fornecedor.nome;
-        fornecedor.ativo = dados.ativo ?? fornecedor.ativo;
-
+    
+        fornecedor.nome = dados.nome;
+    
+        fornecedor.ativo =
+            dados.ativo === '1';
+    
         await fornecedor.save();
     }
-
     async remove(id: number): Promise<void> {
 
         const fornecedor = await this.findOne(id);

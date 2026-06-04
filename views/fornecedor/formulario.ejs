@@ -20,7 +20,7 @@
                             type="text"
                             name="nome"
                             class="form-control"
-                            value="<%= fornecedor?.nome || '' %>"
+                            value="<%= typeof fornecedor !== 'undefined' ? fornecedor.nome : '' %>"
                             required
                         >
                     </div>
@@ -32,17 +32,19 @@
                             name="ativo"
                             class="form-control"
                         >
-                            <option
-                                value="true"
-                                <%= fornecedor?.ativo ? 'selected' : '' %>>
-                                Ativo
-                            </option>
-
-                            <option
-                                value="false"
-                                <%= fornecedor && !fornecedor.ativo ? 'selected' : '' %>>
-                                Inativo
-                            </option>
+                        <option
+                        value="1"
+                        <%= typeof fornecedor !== 'undefined' && fornecedor.ativo ? 'selected' : '' %>
+                    >
+                        Sim
+                    </option>
+                    
+                    <option
+                        value="0"
+                        <%= typeof fornecedor !== 'undefined' && !fornecedor.ativo ? 'selected' : '' %>
+                    >
+                        Não
+                    </option>
                         </select>
                     </div>
 
