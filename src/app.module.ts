@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { DatabaseModule } from './config/database/database.module';
 import { AlunoModule } from './modules/aluno/aluno.module';
 import { FornecedorModule } from './modules/fornecedor/fornecedor.module';
+import { AvaliacaoModule } from './modules/avaliacao/avaliacao.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { FornecedorModule } from './modules/fornecedor/fornecedor.module';
     DatabaseModule,
     AlunoModule,
     FornecedorModule,
+    AvaliacaoModule
   ],
   controllers: [AppController],
   providers: [AppService],
