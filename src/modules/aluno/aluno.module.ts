@@ -7,5 +7,6 @@ import { FornecedorService } from "../fornecedor/fornecedor.service";
     imports: [],
     controllers: [AlunoController],
     providers: [AlunoService, FornecedorService],
+    exports: [AlunoService]
 })
 export class AlunoModule {}

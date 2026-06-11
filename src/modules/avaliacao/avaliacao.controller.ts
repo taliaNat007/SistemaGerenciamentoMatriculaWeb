@@ -10,12 +10,14 @@ import {
 } from "@nestjs/common";
 
 import { AvaliacaoService } from "./avaliacao.service";
+import { AlunoService } from "../aluno/aluno.service";
 
 @Controller('avaliacoes')
 export class AvaliacaoController {
 
     constructor(
-        private avalicaoService: AvaliacaoService
+        private avalicaoService: AvaliacaoService,
+        private alunoService: AlunoService
     ) {}
 
     @Get()
@@ -34,8 +36,14 @@ export class AvaliacaoController {
     @Render('avaliacao/formulario')
     async formularioCriar(): Promise<object> {
 
+        const alunos = await this.alunoService.findAll();
+
+        console.log(alunos);
+
+
         return {
-            titulo: 'Nova Avaliação'
+            titulo: 'Nova Avaliação',
+            alunos
         };
     }
 
@@ -57,12 +65,15 @@ export class AvaliacaoController {
         const avaliacao = await this.avalicaoService.findOne(id);
 
         if (!avaliacao) {
-            throw new Error('Avalição não encontrada!');
+            throw new Error('Avaliação não encontrada!');
         }
+
+        const alunos = await this.alunoService.findAll();
 
         return {
             titulo: 'Edição de Avaliação',
-            avaliacao
+            avaliacao,
+            alunos
         };
     }
 

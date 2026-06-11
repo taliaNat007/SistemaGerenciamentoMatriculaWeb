@@ -1,22 +1,46 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+    BaseEntity,
+    Column,
+    CreateDateColumn,
+    Entity,
+    JoinColumn,
+    ManyToOne,
+    PrimaryGeneratedColumn
+} from "typeorm";
+
+import { Aluno } from "../aluno/aluno.entity";
 
 @Entity('avaliacoes')
 export class Avaliacao extends BaseEntity {
+
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @Column({ type: 'varchar', length: 120 })
-    alunoId!: string;
+    @Column({
+        type: 'varchar',
+        length: 120
+    })
+    nomeMusica!: string;
 
-    @Column({ type: 'varchar', length: 1 })
-    nome!: string;
+    @Column({
+        type: 'double'
+    })
+    nota!: number;
 
-    @Column({ type: 'boolean', default: true })
-    ativo!: boolean;
+    @Column({
+        type: 'boolean',
+        default: false
+    })
+    nivelAtingido!: boolean;
 
-    @CreateDateColumn({ name: 'criado_em' })
-    criadoEm!: Date;
+    @CreateDateColumn({
+        name: 'data_avaliacao'
+    })
+    dataAvaliacao!: Date;
 
-    @UpdateDateColumn({ name: 'atualizado_em', nullable: true })
-    atualizadoEm!: Date;
+    @ManyToOne(() => Aluno)
+    @JoinColumn({
+        name: 'aluno_id'
+    })
+    aluno!: Aluno;
 }

@@ -59,7 +59,7 @@ export class AlunoController {
         
         return {
             titulo: 'Edição de Aluno',
-            subtitulo: `Atualização do produto: ${aluno.nome}`,
+            subtitulo: `Atualização do aluno: ${aluno.nome}`,
             aluno,
             fornecedores,
         };
