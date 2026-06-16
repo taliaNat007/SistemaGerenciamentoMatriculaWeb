@@ -57,19 +57,20 @@
                                     <td><%= index + 1 %></td>
                                     <td><%= alunos[index].nome %></td>
                                     <td><%= alunos[index].cpf %></td>
-                                    <td><%= alunos[index]?.nivelAtual?.nome ? alunos[index]?.nivelAtual : '-' %></td>
+                                    <td><%= alunos[index].nivelAtual ? 'Iniciante' : 'Intermediário' %></td>                                    <td>
                                     <td>
-                                        <% if (alunos[index].ativo) { %>
+                                        <% if (alunos[index].nivelAtual) { %>
 
-                                            <span class="badge badge-primary">Iniciante</span>
+                                            <span class="badge badge-success">Iniciante</span>
 
                                         <% } else { %>
 
-                                            <span class="badge badge-danger">Inativo</span>
+                                            <span class="badge badge-warning">Intermediário</span>
 
                                         <% } %>
                                     </td>
-                                    <td><%= dateFormat(alunos[index].criadoEm) %></td>
+                                    <td><%= new Date(alunos[index].dataNascimento).toLocaleDateString('pt-BR') %></td>
+                                    <td><%= dateFormat(alunos[index].dataCadastro) %></td>
                                     <td>
                                         <a href="/alunos/<%= alunos[index].id %>/editar" class="text-warning mr-1">
                                             <i class="fa fa-pencil fa-lg"></i>

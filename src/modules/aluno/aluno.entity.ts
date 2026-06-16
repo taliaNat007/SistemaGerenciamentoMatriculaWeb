@@ -1,3 +1,4 @@
+import { IsNotEmpty, IsString } from "class-validator";
 import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm";
 //import { Fornecedor } from "../fornecedor/fornecedor.entity";
 
@@ -12,13 +13,16 @@ export class Aluno extends BaseEntity {
     @Column({ type: 'varchar', length: 11 })
     cpf!: string;
    
-    @Column({ type: 'boolean', default: true })
-    nivelAtual!: boolean;
+    @Column({
+    type: 'boolean',
+    default: true
+})
+nivelAtual!: boolean;
 
-    @CreateDateColumn({ name: 'dataNascimento' })
+    @Column({ type: 'date'})
     dataNascimento!: Date;
 
-    @CreateDateColumn({ name: 'dataCadastro' })
+    @CreateDateColumn()
     dataCadastro!: Date;
 
 }

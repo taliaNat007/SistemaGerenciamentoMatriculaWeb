@@ -35,17 +35,23 @@
 
                 <td>
 
-                    <% if(avaliacoes[index].nivelAtingido) { %>
+                   <% if(avaliacoes[index].nivelAtingido === 'Culto de Jovens') { %>
 
-                        <span class="badge badge-success">
-                            Sim
-                        </span>
+                    <span class="badge badge-success">
+                        Culto de Jovens
+                    </span>
 
-                    <% } else { %>
+                    <% } else if(avaliacoes[index].nivelAtingido === 'Culto Oficial') { %>
 
-                        <span class="badge badge-danger">
-                            Não
-                        </span>
+                    <span class="badge badge-primary">
+                        Culto Oficial
+                    </span>
+
+                    <% } else if(avaliacoes[index].nivelAtingido === 'Oficialização') { %>
+
+                    <span class="badge badge-warning">
+                        Oficialização
+                    </span>
 
                     <% } %>
 

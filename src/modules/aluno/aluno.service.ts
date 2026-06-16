@@ -6,30 +6,22 @@ import { UpdateAlunoDto } from "./dtos/update-aluno.dto";
 @Injectable()
 export class AlunoService {     
     async findAll(): Promise<Aluno[]> {
-        // return Aluno.find({
-        //     select: {
-        //         id: true,
-        //         nome: true,
-        //         preco: true,
-        //         ativo: true,
-        //         criadoEm: true
-        //     }
-        // });
-        return Aluno.find(/*{ relations: ['fornecedor'] }*/);
+        return Aluno.find();
     }
 
     async findOne(id: number): Promise<Aluno | null> {
         return Aluno.findOne({
             where: { id },
-           // relations: ['fornecedor']         
         });
     }
 
     async create(dados: CreateAlunoDto): Promise<Aluno> {
        const aluno = Aluno.create({
-            nome: dados.nome,
-            cpf: dados.cpf
-        });
+        nome: dados.nome,
+        cpf: dados.cpf,
+        dataNascimento: dados.dataNascimento,
+        nivelAtual: dados.nivelAtual,
+    });
 
         return aluno.save();
     }

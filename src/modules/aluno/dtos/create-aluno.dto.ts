@@ -1,5 +1,5 @@
 import { Type, Transform } from "class-transformer";
-import { IsNotEmpty, MinLength, IsNumber, Min, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, MinLength, IsNumber, Min, IsOptional, IsString, IsDateString, IsBoolean } from "class-validator";
 
 
 
@@ -25,5 +25,13 @@ export class CreateAlunoDto {
   @MinLength(11, { message: 'O cpf deve conter 11 caracteres' })
   cpf!: string;
 
+  @Transform(({ value }) => value === 'true' || value === true)
+  @IsBoolean()
+  nivelAtual!: boolean;
+
+
+  @IsNotEmpty()
+  @IsDateString()
+  dataNascimento!: string;
  
 }
