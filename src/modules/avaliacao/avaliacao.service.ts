@@ -26,19 +26,16 @@ export class AvaliacaoService {
         const avaliacao = Avaliacao.create({
             nomeMusica: dados.nomeMusica,
             nota: Number(dados.nota),
-            nivelAtingido: dados.nivelAtingido === '1',
+            nivelAtingido: dados.nivelAtingido,
             aluno: {
                 id: Number(dados.alunoId)
             } as any
         });
 
-        return avaliacao.save();
+        return await avaliacao.save();
     }
 
-    async update(
-        id: number,
-        dados: any
-    ): Promise<void> {
+    async update(id: number, dados: any): Promise<void> {
 
         const avaliacao = await this.findOne(id);
 
@@ -53,7 +50,7 @@ export class AvaliacaoService {
         );
 
         avaliacao.nivelAtingido =
-            dados.nivelAtingido === '1';
+            dados.nivelAtingido;
 
         avaliacao.aluno = {
             id: Number(dados.alunoId)
@@ -61,7 +58,7 @@ export class AvaliacaoService {
 
         await avaliacao.save();
     }
-
+    
     async remove(id: number): Promise<void> {
 
         const avaliacao = await this.findOne(id);

@@ -25,13 +25,5 @@ export class CreateAlunoDto {
   @MinLength(11, { message: 'O cpf deve conter 11 caracteres' })
   cpf!: string;
 
- // @IsNumber({ maxDecimalPlaces: 2 }, { message: 'O valor deve ter no máximo 2 casas decimais' })
- // @Transform(({ value }) => toDecimalNumber(value))
-  //@Min(0.01, { message: 'O preço deve no mínimo R$ 0,01'})
- // preco!: number;
-
-  @IsNotEmpty({ message: 'O campo nome é obrigatório'})
-  @IsNumber()
-  @Transform(({ value }) => parseInt(value))
-  fornecedor: number;
+ 
 }

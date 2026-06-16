@@ -3,14 +3,14 @@ import { AlunoService } from "./aluno.service";
 import { ValidationView, toBoolean } from 'nest-validation-view';
 import { CreateAlunoDto } from "./dtos/create-aluno.dto";
 import { UpdateAlunoDto } from "./dtos/update-aluno.dto";
-import { FornecedorService } from "../fornecedor/fornecedor.service";
+//import { FornecedorService } from "../fornecedor/fornecedor.service";
 
 @Controller('alunos')
 export class AlunoController {
 
     constructor(
         private alunoService: AlunoService,
-        private fornecedorService: FornecedorService
+       //private fornecedorService: FornecedorService
     ) {}
 
     @Get()
@@ -27,11 +27,11 @@ export class AlunoController {
     @Get('criar')
     @Render('aluno/formulario')
     async formularioCriar(): Promise<object> {
-        const fornecedores = await this.fornecedorService.findAll();
+        //const fornecedores = await this.fornecedorService.findAll();
 
         return {
             titulo: 'Novo aluno',
-            fornecedores,
+           // fornecedores,
         };
     }
 
@@ -51,7 +51,7 @@ export class AlunoController {
     @Render('aluno/formulario')
     async formEditar(@Param('id') id: number): Promise<object> {
         const aluno = await this.alunoService.findOne(id);
-        const fornecedores = await this.fornecedorService.findAll();
+        //const fornecedores = await this.fornecedorService.findAll();
 
         if(!aluno) {
             throw new Error('Aluno não encontrado!');            
@@ -61,7 +61,7 @@ export class AlunoController {
             titulo: 'Edição de Aluno',
             subtitulo: `Atualização do aluno: ${aluno.nome}`,
             aluno,
-            fornecedores,
+            //fornecedores,
         };
     }
 

@@ -12,7 +12,6 @@
             <div class="card-body">
 
                 <form method="POST">
-
                     <!-- ALUNO -->
                     <div class="form-group mb-3">
                         <label for="alunoId">Aluno</label>
@@ -31,11 +30,11 @@
 
                                 <option
                                     value="<%= aluno.id %>"
-                                    <%= typeof avaliacao !== 'undefined'
-                                        && avaliacao.aluno
-                                        && avaliacao.aluno.id === aluno.id
-                                        ? 'selected'
-                                        : '' %>
+                                    <%= avaliacao &&
+                                    avaliacao.aluno &&
+                                    avaliacao.aluno.id === aluno.id
+                                    ? 'selected'
+                                    : '' %>
                                 >
                                     <%= aluno.nome %>
                                 </option>
@@ -54,7 +53,7 @@
                             id="nomeMusica"
                             name="nomeMusica"
                             class="form-control"
-                            value="<%= typeof avaliacao !== 'undefined' ? avaliacao.nomeMusica : '' %>"
+                            value="<%= avaliacao ? avaliacao.nomeMusica : '' %>"
                             required
                         >
                     </div>
@@ -71,7 +70,7 @@
                             min="0"
                             max="10"
                             step="0.1"
-                            value="<%= typeof avaliacao !== 'undefined' ? avaliacao.nota : '' %>"
+                            value="<%= avaliacao ? avaliacao.nota : '' %>"
                             required
                         >
                     </div>
@@ -84,34 +83,31 @@
 
                         <select
                             name="nivelAtingido"
-                            id="nivelAtingido"
                             class="form-control"
-                            required
                         >
-                            <option value="">
-                                Selecione
-                            </option>
-
-                            <option
-                                value="1"
-                                <%= typeof avaliacao !== 'undefined'
-                                    && avaliacao.nivelAtingido
+                            <option value="Culto de Jovens"
+                                <%= avaliacao &&
+                                    avaliacao.nivelAtingido === 'Culto de Jovens'
                                     ? 'selected'
-                                    : '' %>
-                            >
-                                Sim
+                                    : '' %>>
+                                Culto de Jovens
                             </option>
 
-                            <option
-                                value="0"
-                                <%= typeof avaliacao !== 'undefined'
-                                    && !avaliacao.nivelAtingido
+                            <option value="Culto Oficial"
+                                <%= avaliacao &&
+                                    avaliacao.nivelAtingido === 'Culto Oficial'
                                     ? 'selected'
-                                    : '' %>
-                            >
-                                Não
+                                    : '' %>>
+                                Culto Oficial
                             </option>
 
+                            <option value="Oficialização"
+                                <%= avaliacao &&
+                                    avaliacao.nivelAtingido === 'Oficialização'
+                                    ? 'selected'
+                                    : '' %>>
+                                Oficialização
+                            </option>
                         </select>
                     </div>
 

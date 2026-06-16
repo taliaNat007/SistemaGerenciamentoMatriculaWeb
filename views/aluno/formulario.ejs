@@ -1,6 +1,5 @@
 <% const erros = validationErrors(locals.errors); %>
 <% const aluno = locals.aluno || {} %>
-<% const fornecedores = locals.fornecedores || [] %>
 
 <div class="row page-titles mx-0">
     <div class="col-sm-6 p-md-0">
@@ -99,21 +98,9 @@
                         </div>
                     </div>
 
+                    <a href="/avaliacoes/criar" class="btn btn-primary mb-2">Adicionar  Avaliacao</a>
 
-                    <div class="form-group col-md-6 mb-3">
-
-                        <label for="fornecedor" class="form-label">Fornecedor</label>
-                        <select name="fornecedor" class="form-control">
-                            <option value="">Selecione um fornecedor</option>
-
-                            <% fornecedores.forEach(fornecedor => { %>
-                             
-                                <option value="<%= fornecedor.id %>" <%= fornecedor.id == aluno?.fornecedor?.id ? 'selected' : '' %> ><%= fornecedor.nome %></option>
-
-                            <% }) %>
-                        </select>
-
-                    </div>
+                   
 
                 </div>
 

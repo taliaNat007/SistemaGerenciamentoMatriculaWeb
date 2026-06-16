@@ -15,18 +15,21 @@ export class AlunoService {
         //         criadoEm: true
         //     }
         // });
-        return Aluno.find({ relations: ['fornecedor'] });
+        return Aluno.find(/*{ relations: ['fornecedor'] }*/);
     }
 
     async findOne(id: number): Promise<Aluno | null> {
         return Aluno.findOne({
             where: { id },
-            relations: ['fornecedor']         
+           // relations: ['fornecedor']         
         });
     }
 
     async create(dados: CreateAlunoDto): Promise<Aluno> {
-        const aluno = Aluno.create({ ...dados, fornecedor: { id: dados.fornecedor } });
+       const aluno = Aluno.create({
+            nome: dados.nome,
+            cpf: dados.cpf
+        });
 
         return aluno.save();
     }
@@ -38,7 +41,7 @@ export class AlunoService {
             return null;
         }
 
-        Object.assign(aluno, { ...dados, fornecedor: { id: dados.fornecedor }});
+        Object.assign(aluno, { ...dados});
 
         return aluno.save(); 
     }
