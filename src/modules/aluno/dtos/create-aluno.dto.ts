@@ -1,8 +1,6 @@
 import { Type, Transform } from "class-transformer";
 import { IsNotEmpty, MinLength, IsNumber, Min, IsOptional, IsString, IsDateString, IsBoolean } from "class-validator";
 
-
-
 const toDecimalNumber = (value: unknown): unknown => {
   const normalizedValue: unknown = Array.isArray(value)
     ? (value as unknown[])[value.length - 1]
@@ -21,14 +19,13 @@ export class CreateAlunoDto {
   @MinLength(5, { message: 'O nome deve ter no mínimo 5 caracteres' })
   nome!: string;
 
-  @IsNotEmpty({ message: 'O campo nome é obrigatório'})
+  @IsNotEmpty({ message: 'O campo cpf é obrigatório'})
   @MinLength(11, { message: 'O cpf deve conter 11 caracteres' })
   cpf!: string;
 
-  @Transform(({ value }) => value === 'true' || value === true)
-  @IsBoolean()
-  nivelAtual!: boolean;
-
+  @IsOptional()
+  @IsString()
+  nivelAtual?: string;
 
   @IsNotEmpty()
   @IsDateString()

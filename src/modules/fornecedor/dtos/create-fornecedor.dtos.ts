@@ -1,4 +1,4 @@
-import { IsBoolean, IsNotEmpty, IsString, MaxLength } from "class-validator";
+import { IsNotEmpty, IsString, MaxLength } from "class-validator";
 import { Transform } from "class-transformer";
 
 export class CreateFornecedorDto {
@@ -8,7 +8,5 @@ export class CreateFornecedorDto {
     @MaxLength(120)
     nome!: string;
 
-    @Transform(({ value }) => value === 'true' || value === true)
-    @IsBoolean()
-    ativo!: boolean;
+    
 }

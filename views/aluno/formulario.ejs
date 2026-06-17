@@ -64,19 +64,29 @@
 
                             <select
                                 class="form-control"
-                                id="nivelAtual"
-                                name="nivelAtual">
-
-                                <option value="true"
-                                    <%= aluno?.nivelAtual ? 'selected' : '' %>>
+                                name="nivelAtual"
+                                                            >
+                                <option value="">Selecione</option>
+                            
+                                <option value="Iniciante"
+                                    <%= aluno.nivelAtual === 'Iniciante' ? 'selected' : '' %>>
                                     Iniciante
                                 </option>
-
-                                <option value="false"
-                                    <%= aluno && !aluno.nivelAtual ? 'selected' : '' %>>
+                            
+                                <option value="Intermediario"
+                                    <%= aluno.nivelAtual === 'Intermediario' ? 'selected' : '' %>>
                                     Intermediário
                                 </option>
-
+                            
+                                <option value="Avancado"
+                                    <%= aluno.nivelAtual === 'Avancado' ? 'selected' : '' %>>
+                                    Avançado
+                                </option>
+                            
+                                <option value="Oficializado"
+                                    <%= aluno.nivelAtual === 'Oficializado' ? 'selected' : '' %>>
+                                    Oficializado
+                                </option>
                             </select>
                         </div>
 
@@ -90,7 +100,7 @@
                                 class="form-control"
                                 id="dataNascimento"
                                 name="dataNascimento"
-                                value="<%= aluno?.dataNascimento ? String(aluno.dataNascimento).split('T')[0] : '' %>"                                required
+                                value="<%= aluno?.dataNascimento ? String(aluno.dataNascimento).split('T')[0] : '' %>"  
                             >
 
                             <small class="text-muted">

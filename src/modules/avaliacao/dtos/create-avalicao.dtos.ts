@@ -2,6 +2,7 @@ import { Transform } from 'class-transformer';
 import {
     IsNotEmpty,
     IsNumber,
+    IsOptional,
     IsString,
     MaxLength
 } from 'class-validator';
@@ -17,9 +18,9 @@ export class CreateAvaliacaoDto {
     @IsNumber()
     nota!: number;
 
+    @IsOptional()
     @IsString()
-    @IsNotEmpty()
-    nivelAtingido!: string;
+    nivelAtingido?: string;
 
     @Transform(({ value }) => parseInt(value))
     @IsNumber()

@@ -28,10 +28,12 @@ export class Avaliacao extends BaseEntity {
     nota!: number;
 
     @Column({
+        name: 'nivel_atingido',
         type: 'varchar',
-        default: false
+        length: 50,
+        nullable: true
     })
-    nivelAtingido!: string;
+    nivelAtingido?: string;
 
     @CreateDateColumn({
         name: 'data_avaliacao'

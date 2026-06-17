@@ -35,26 +35,40 @@
 
                 <td>
 
-                   <% if(avaliacoes[index].nivelAtingido === 'Culto de Jovens') { %>
-
-                    <span class="badge badge-success">
-                        Culto de Jovens
-                    </span>
-
-                    <% } else if(avaliacoes[index].nivelAtingido === 'Culto Oficial') { %>
-
-                    <span class="badge badge-primary">
-                        Culto Oficial
-                    </span>
-
-                    <% } else if(avaliacoes[index].nivelAtingido === 'Oficialização') { %>
-
-                    <span class="badge badge-warning">
-                        Oficialização
-                    </span>
-
+                    <% if (avaliacoes[index].nivelAtingido) { %>
+                
+                        <% if (avaliacoes[index].nivelAtingido === 'Culto de Jovens') { %>
+                
+                            <span class="badge badge-success">
+                                <%= avaliacoes[index].nivelAtingido %>
+                            </span>
+                
+                        <% } else if (avaliacoes[index].nivelAtingido === 'Culto Oficial') { %>
+                
+                            <span class="badge badge-primary">
+                                <%= avaliacoes[index].nivelAtingido %>
+                            </span>
+                
+                        <% } else if (avaliacoes[index].nivelAtingido === 'Oficialização') { %>
+                
+                            <span class="badge badge-warning">
+                                <%= avaliacoes[index].nivelAtingido %>
+                            </span>
+                
+                        <% } else { %>
+                
+                            <span class="badge badge-secondary">
+                                <%= avaliacoes[index].nivelAtingido %>
+                            </span>
+                
+                        <% } %>
+                
+                    <% } else { %>
+                
+                        -
+                
                     <% } %>
-
+                
                 </td>
 
                 <td>

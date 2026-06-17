@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Avaliacao } from "./avaliacao.entity";
+import { Aluno } from "../aluno/aluno.entity";
 
 @Injectable()
 export class AvaliacaoService {
@@ -23,16 +24,29 @@ export class AvaliacaoService {
 
     async create(dados: any): Promise<Avaliacao> {
 
+        const aluno = await Aluno.findOne({
+            where: {
+                id: Number(dados.alunoId)
+            }
+        });
+        console.log(dados);
+        if (!aluno) {
+            throw new Error("Aluno não encontrado!");
+        }
+
         const avaliacao = Avaliacao.create({
             nomeMusica: dados.nomeMusica,
             nota: Number(dados.nota),
             nivelAtingido: dados.nivelAtingido,
-            aluno: {
-                id: Number(dados.alunoId)
-            } as any
+            aluno
         });
 
-        return await avaliacao.save();
+        await avaliacao.save();
+
+        aluno.nivelAtual = dados.nivelAtingido;
+        await aluno.save();
+
+        return avaliacao;
     }
 
     async update(id: number, dados: any): Promise<void> {
@@ -40,7 +54,17 @@ export class AvaliacaoService {
         const avaliacao = await this.findOne(id);
 
         if (!avaliacao) {
-            throw new Error('Avaliação não encontrada!');
+            throw new Error("Avaliação não encontrada!");
+        }
+
+        const aluno = await Aluno.findOne({
+            where: {
+                id: Number(dados.alunoId)
+            }
+        });
+
+        if (!aluno) {
+            throw new Error("Aluno não encontrado!");
         }
 
         avaliacao.nomeMusica = dados.nomeMusica;
@@ -52,19 +76,20 @@ export class AvaliacaoService {
         avaliacao.nivelAtingido =
             dados.nivelAtingido;
 
-        avaliacao.aluno = {
-            id: Number(dados.alunoId)
-        } as any;
+        avaliacao.aluno = aluno;
 
         await avaliacao.save();
+
+        aluno.nivelAtual = dados.nivelAtingido;
+        await aluno.save();
     }
-    
+
     async remove(id: number): Promise<void> {
 
         const avaliacao = await this.findOne(id);
 
         if (!avaliacao) {
-            throw new Error('Avaliação não encontrada!');
+            throw new Error("Avaliação não encontrada!");
         }
 
         await avaliacao.remove();

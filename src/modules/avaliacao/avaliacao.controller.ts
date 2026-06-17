@@ -39,9 +39,6 @@ export class AvaliacaoController {
 
         const alunos = await this.alunoService.findAll();
 
-        console.log(alunos);
-
-
         return {
             titulo: 'Nova Avaliação',
             alunos, 

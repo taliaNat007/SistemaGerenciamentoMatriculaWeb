@@ -10,14 +10,11 @@ export class Aluno extends BaseEntity {
     @Column({ type: 'varchar', length: 120 })
     nome!: string;
    
-    @Column({ type: 'varchar', length: 11 })
+    @Column({ unique: true, type: 'varchar', length: 11 })
     cpf!: string;
    
-    @Column({
-    type: 'boolean',
-    default: true
-})
-nivelAtual!: boolean;
+    @Column({ nullable: true })
+    nivelAtual?: string;
 
     @Column({ type: 'date'})
     dataNascimento!: Date;

@@ -1,6 +1,4 @@
 import { PartialType } from "@nestjs/mapped-types";
-import { CreateFornecedorDto } from "./create-fornecedor.dtos";
+import { CreateAlunoDto } from "src/modules/aluno/dtos/create-aluno.dto";
 
-export class UpdateFornecedorDto extends PartialType(
-    CreateFornecedorDto
-) {}
+export class UpdateAlunoDto extends CreateAlunoDto {}

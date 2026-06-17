@@ -57,18 +57,7 @@
                                     <td><%= index + 1 %></td>
                                     <td><%= alunos[index].nome %></td>
                                     <td><%= alunos[index].cpf %></td>
-                                    <td><%= alunos[index].nivelAtual ? 'Iniciante' : 'Intermediário' %></td>                                    <td>
-                                    <td>
-                                        <% if (alunos[index].nivelAtual) { %>
-
-                                            <span class="badge badge-success">Iniciante</span>
-
-                                        <% } else { %>
-
-                                            <span class="badge badge-warning">Intermediário</span>
-
-                                        <% } %>
-                                    </td>
+                                    <td><%= alunos[index].nivelAtual %></td>
                                     <td><%= new Date(alunos[index].dataNascimento).toLocaleDateString('pt-BR') %></td>
                                     <td><%= dateFormat(alunos[index].dataCadastro) %></td>
                                     <td>
