@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Redirect, Render, Param, HttpCode } from "@nestjs/common";
+import { Body, Controller, Get, Post, Redirect, Render, Param, HttpCode, Query } from "@nestjs/common";
 import { AlunoService } from "./aluno.service";
 import { ValidationView, toBoolean } from 'nest-validation-view';
 import { CreateAlunoDto } from "./dtos/create-aluno.dto";
@@ -13,12 +13,15 @@ export class AlunoController {
 
     @Get()
     @Render('aluno/inicial')
-    async inicial(): Promise<object> {
-        const listaAlunos = await this.alunoService.findAll();
+    async inicial(
+        @Query('pesquisa') pesquisa: string
+    ): Promise<object> {
+        const listaAlunos = await this.alunoService.findAll(pesquisa);
 
         return {
             titulo: 'Consulta de Alunos',
-            alunos: listaAlunos
+            alunos: listaAlunos,
+            pesquisa
         }
     }
 
@@ -99,4 +102,5 @@ export class AlunoController {
     async remove(@Param('id') id: number): Promise<void>{
         await this.alunoService.remove(id);
     }
+
 }

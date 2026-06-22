@@ -2,10 +2,24 @@ import { Injectable } from "@nestjs/common";
 import { Aluno } from "./aluno.entity";
 import { CreateAlunoDto } from "./dtos/create-aluno.dto";
 import { UpdateAlunoDto } from "./dtos/update-aluno.dto";
+import { Like } from "typeorm";
 
 @Injectable()
 export class AlunoService {     
-    async findAll(): Promise<Aluno[]> {
+    async findAll(
+        pesquisa?: string
+    ): Promise<Aluno[]> {
+
+        if (pesquisa) {
+
+            return Aluno.find({
+                where: {
+                    nome: Like(`%${pesquisa}%`)
+                }
+            });
+
+        }
+
         return Aluno.find();
     }
 
@@ -47,4 +61,6 @@ export class AlunoService {
 
         return aluno.remove();
     }
+
+   
 }

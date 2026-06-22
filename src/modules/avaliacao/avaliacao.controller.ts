@@ -6,7 +6,8 @@ import {
     Redirect,
     Render,
     Param,
-    HttpCode
+    HttpCode,
+    Query
 } from "@nestjs/common";
 
 import { AvaliacaoService } from "./avaliacao.service";
@@ -23,13 +24,16 @@ export class AvaliacaoController {
 
     @Get()
     @Render('avaliacao/inicial')
-    async inicial(): Promise<object> {
+    async inicial(
+        @Query('pesquisa') pesquisa: string
+    ): Promise<object> {
 
-        const avaliacoes = await this.avalicaoService.findAll();
+        const avaliacoes = await this.avalicaoService.findAll(pesquisa);
 
         return {
             titulo: 'Consulta de Avaliações',
-            avaliacoes
+            avaliacoes,
+            pesquisa
         };
     }
 

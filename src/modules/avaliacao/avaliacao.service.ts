@@ -5,12 +5,28 @@ import { Aluno } from "../aluno/aluno.entity";
 @Injectable()
 export class AvaliacaoService {
 
-    async findAll(): Promise<Avaliacao[]> {
-        return Avaliacao.find({
-            relations: {
-                aluno: true
-            }
-        });
+    async findAll(
+        pesquisa?: string
+    ): Promise<Avaliacao[]> {
+
+        const query =
+            Avaliacao.createQueryBuilder('avaliacao')
+            .leftJoinAndSelect(
+                'avaliacao.aluno',
+                'aluno'
+            );
+
+        if (pesquisa) {
+
+            query.where(
+                'aluno.nome LIKE :nome',
+                {
+                    nome: `%${pesquisa}%`
+                }
+            );
+        }
+
+        return query.getMany();
     }
 
     async findOne(id: number): Promise<Avaliacao | null> {

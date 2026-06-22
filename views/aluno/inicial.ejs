@@ -25,7 +25,13 @@
                     <form>
                         <div class="form-row">
                             <div class="col-lg-10">
-                                <input type="text" class="form-control" placeholder="Digite para pesquisar...">
+                                    <input
+                                        type="text"
+                                        name="pesquisa"
+                                        class="form-control"
+                                        placeholder="Pesquisar aluno..."
+                                        value="<%= pesquisa || '' %>"
+                                    >
                             </div>
                             <div class="col-lg-2 mt-2 mt-lg-0">
                                 <button type="submit" class="btn btn-warning mb-2">Pesquisar</button>
@@ -69,7 +75,6 @@
                                         </a>
                                         
                                         <a href="#" class="text-secondary remover" data-name="<%= alunos[index].nome %>" data-id="<%= alunos[index].id %>">
-                                            <i class="fa fa-trash fa-lg"></i>
                                         </a>
                                     </td>
                                 </tr>

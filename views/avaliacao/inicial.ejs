@@ -1,106 +1,132 @@
-<table class="table table-responsive-sm">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Aluno</th>
-            <th>Música</th>
-            <th>Nota</th>
-            <th>Nível Atingido</th>
-            <th>Data Avaliação</th>
-            <th>Ações</th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-        <% for(let index = 0; index < avaliacoes.length; index++) { %>
-
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>
+                <%= titulo %>
+            </h4>
+            <p class="mb-0">&raquo; Consulte todas as Avaliações dos Alunos</p>
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Inicial</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Avaliacões</a></li>
+        </ol>
+    </div>
+</div>
+<!-- row -->
+<div>
+    <div class="basic-form flex-grow-1">
+        <form>
+            <div class="form-row">
+                <div class="col-lg-10">
+                    <input type="text" name="pesquisa" class="form-control" placeholder="Pesquisar avaliação do aluno..."
+                        value="<%= pesquisa || '' %>" >
+                </div>
+                <div class="col-lg-2 mt-2 mt-lg-0">
+                    <button type="submit" class="btn btn-warning mb-2">Pesquisar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <table class="table table-responsive-sm">
+        <thead>
             <tr>
-
-                <td><%= index + 1 %></td>
-
-                <td>
-                    <%= avaliacoes[index].aluno ?
-                    avaliacoes[index].aluno.nome :
-                    '-' %>
-                </td>
-
-                <td>
-                    <%= avaliacoes[index].nomeMusica %>
-                </td>
-
-                <td>
-                    <%= avaliacoes[index].nota %>
-                </td>
-
-                <td>
-
-                    <% if (avaliacoes[index].nivelAtingido) { %>
-                
-                        <% if (avaliacoes[index].nivelAtingido === 'Culto de Jovens') { %>
-                
-                            <span class="badge badge-success">
-                                <%= avaliacoes[index].nivelAtingido %>
-                            </span>
-                
-                        <% } else if (avaliacoes[index].nivelAtingido === 'Culto Oficial') { %>
-                
-                            <span class="badge badge-primary">
-                                <%= avaliacoes[index].nivelAtingido %>
-                            </span>
-                
-                        <% } else if (avaliacoes[index].nivelAtingido === 'Oficialização') { %>
-                
-                            <span class="badge badge-warning">
-                                <%= avaliacoes[index].nivelAtingido %>
-                            </span>
-                
-                        <% } else { %>
-                
-                            <span class="badge badge-secondary">
-                                <%= avaliacoes[index].nivelAtingido %>
-                            </span>
-                
-                        <% } %>
-                
-                    <% } else { %>
-                
-                        -
-                
-                    <% } %>
-                
-                </td>
-
-                <td>
-                    <%= dateFormat(
-                        avaliacoes[index].dataAvaliacao
-                    ) %>
-                </td>
-
-                <td>
-
-                    <a
-                        href="/avaliacoes/<%= avaliacoes[index].id %>/editar"
-                        class="text-warning mr-2">
-
-                        <i class="fa fa-pencil fa-lg"></i>
-
-                    </a>
-
-                    <a
-                        href="/avaliacoes/<%= avaliacoes[index].id %>/excluir"
-                        class="text-danger">
-
-                        <i class="fa fa-trash fa-lg"></i>
-
-                    </a>
-
-                </td>
-
+                <th>#</th>
+                <th>Aluno</th>
+                <th>Música</th>
+                <th>Nota</th>
+                <th>Nível Atingido</th>
+                <th>Data Avaliação</th>
+                <th>Ações</th>
             </tr>
+        </thead>
 
-        <% } %>
+        <tbody>
 
-    </tbody>
+            <% for(let index=0; index < avaliacoes.length; index++) { %>
 
-</table>
+                <tr>
+
+                    <td>
+                        <%= index + 1 %>
+                    </td>
+
+                    <td>
+                        <%= avaliacoes[index].aluno ? avaliacoes[index].aluno.nome : '-' %>
+                    </td>
+
+                    <td>
+                        <%= avaliacoes[index].nomeMusica %>
+                    </td>
+
+                    <td>
+                        <%= avaliacoes[index].nota %>
+                    </td>
+
+                    <td>
+
+                        <% if (avaliacoes[index].nivelAtingido) { %>
+
+                            <% if (avaliacoes[index].nivelAtingido==='Culto de Jovens' ) { %>
+
+                                <span class="badge badge-success">
+                                    <%= avaliacoes[index].nivelAtingido %>
+                                </span>
+
+                                <% } else if (avaliacoes[index].nivelAtingido==='Culto Oficial' ) { %>
+
+                                    <span class="badge badge-primary">
+                                        <%= avaliacoes[index].nivelAtingido %>
+                                    </span>
+
+                                    <% } else if (avaliacoes[index].nivelAtingido==='Oficialização' ) { %>
+
+                                        <span class="badge badge-warning">
+                                            <%= avaliacoes[index].nivelAtingido %>
+                                        </span>
+
+                                        <% } else { %>
+
+                                            <span class="badge badge-secondary">
+                                                <%= avaliacoes[index].nivelAtingido %>
+                                            </span>
+
+                                            <% } %>
+
+                                                <% } else { %>
+
+                                                    -
+
+                                                    <% } %>
+
+                    </td>
+
+                    <td>
+                        <%= dateFormat( avaliacoes[index].dataAvaliacao ) %>
+                    </td>
+
+                    <td>
+
+                        <a href="/avaliacoes/<%= avaliacoes[index].id %>/editar" class="text-warning mr-2">
+
+                            <i class="fa fa-pencil fa-lg"></i>
+
+                        </a>
+
+                        <a href="/avaliacoes/<%= avaliacoes[index].id %>/excluir" class="text-danger">
+
+                            <i class="fa fa-trash fa-lg"></i>
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                <% } %>
+
+        </tbody>
+
+    </table>
+</div>
