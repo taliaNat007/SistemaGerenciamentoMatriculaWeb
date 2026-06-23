@@ -4,7 +4,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './config/database/database.module';
 import { AlunoModule } from './modules/aluno/aluno.module';
-import { FornecedorModule } from './modules/fornecedor/fornecedor.module';
 import { AvaliacaoModule } from './modules/avaliacao/avaliacao.module';
 
 @Module({
@@ -12,7 +11,6 @@ import { AvaliacaoModule } from './modules/avaliacao/avaliacao.module';
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
     AlunoModule,
-    FornecedorModule,
     AvaliacaoModule
   ],
   controllers: [AppController],
