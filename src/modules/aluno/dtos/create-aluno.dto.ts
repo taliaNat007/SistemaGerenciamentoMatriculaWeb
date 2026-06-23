@@ -1,5 +1,5 @@
 import { Type, Transform } from "class-transformer";
-import { IsNotEmpty, MinLength, IsNumber, Min, IsOptional, IsString, IsDateString, IsBoolean } from "class-validator";
+import { IsNotEmpty, MinLength, IsOptional, IsString, IsDateString } from "class-validator";
 
 const toDecimalNumber = (value: unknown): unknown => {
   const normalizedValue: unknown = Array.isArray(value)
