@@ -1,11 +1,5 @@
 import { Transform } from 'class-transformer';
-import {
-    IsNotEmpty,
-    IsNumber,
-    IsOptional,
-    IsString,
-    MaxLength
-} from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class CreateAvaliacaoDto {
 

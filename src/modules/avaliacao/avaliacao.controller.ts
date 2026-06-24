@@ -1,15 +1,4 @@
-import {
-    Body,
-    Controller,
-    Get,
-    Post,
-    Redirect,
-    Render,
-    Param,
-    HttpCode,
-    Query
-} from "@nestjs/common";
-
+import { Body, Controller, Get, Post, Redirect, Render, Param, HttpCode, Query } from "@nestjs/common";
 import { AvaliacaoService } from "./avaliacao.service";
 import { AlunoService } from "../aluno/aluno.service";
 import { CreateAvaliacaoDto } from "./dtos/create-avalicao.dtos";
@@ -20,7 +9,7 @@ export class AvaliacaoController {
     constructor(
         private avalicaoService: AvaliacaoService,
         private alunoService: AlunoService
-    ) {}
+    ) { }
 
     @Get()
     @Render('avaliacao/inicial')
@@ -45,7 +34,7 @@ export class AvaliacaoController {
 
         return {
             titulo: 'Nova Avaliação',
-            alunos, 
+            alunos,
             avaliacao: null
         };
     }
@@ -53,7 +42,7 @@ export class AvaliacaoController {
     @Post('criar')
     @Redirect('/avaliacoes')
     async formularioCriarSalvar(
-    @Body() dados: CreateAvaliacaoDto    ): Promise<void> {
+        @Body() dados: CreateAvaliacaoDto): Promise<void> {
 
         await this.avalicaoService.create(dados);
     }
@@ -83,7 +72,7 @@ export class AvaliacaoController {
     @Redirect('/avaliacoes')
     async formEditarSalvar(
         @Param('id') id: number,
-    @Body() dados: CreateAvaliacaoDto    ): Promise<void> {
+        @Body() dados: CreateAvaliacaoDto): Promise<void> {
 
         await this.avalicaoService.update(id, dados);
     }

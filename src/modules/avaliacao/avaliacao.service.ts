@@ -5,16 +5,14 @@ import { Aluno } from "../aluno/aluno.entity";
 @Injectable()
 export class AvaliacaoService {
 
-    async findAll(
-        pesquisa?: string
-    ): Promise<Avaliacao[]> {
+    async findAll(pesquisa?: string): Promise<Avaliacao[]> {
 
         const query =
             Avaliacao.createQueryBuilder('avaliacao')
-            .leftJoinAndSelect(
-                'avaliacao.aluno',
-                'aluno'
-            );
+                .leftJoinAndSelect(
+                    'avaliacao.aluno',
+                    'aluno'
+                );
 
         if (pesquisa) {
 

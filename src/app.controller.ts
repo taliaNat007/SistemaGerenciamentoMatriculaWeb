@@ -3,24 +3,15 @@ import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService) { }
 
   @Get()
   @Render('inicial')
   getHello(): object {
-    const pessoas = [
-      { nome: 'João Teixeira', email: 'joao.teixeira@ifro.edu.br' },
-      { nome: 'Reinaldo Pereira', email: 'reinaldo.pereira@ifro.edu.br' },
-      { nome: 'Jackson Henrique', email: 'jackson.henrique@ifro.edu.br' },
-      { nome: 'Elias Abreu', email: 'elias.abreu@ifro.edu.br' },
-      { nome: 'Clayton Andrade', email: 'clayton.andrade@ifro.edu.br' },
-      { nome: 'Geilson Guardia', email: 'gleison.guardia@ifro.edu.br' },
-    ];
-
+    
     return {
-      titulo: 'AppWeb com NestJs',
+      titulo: 'Gerenciamento de Alunos Musicistas',
       horaAgora: new Date().toLocaleString('pt-BR'),
-      listaPessoas: pessoas,
     };
   }
 
@@ -32,9 +23,5 @@ export class AppController {
     };
   }
 
-  @Get('login')
-  @Render('autenticacao/login')
-  login(): object {
-    return { layout: false };
-  }
+  
 }

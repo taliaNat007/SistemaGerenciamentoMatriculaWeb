@@ -1,6 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator";
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, ManyToOne, JoinColumn } from "typeorm";
-//import { Fornecedor } from "../fornecedor/fornecedor.entity";
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity('alunos')
 export class Aluno extends BaseEntity {

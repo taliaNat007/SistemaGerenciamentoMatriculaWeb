@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, Redirect, Render, Param, HttpCode, Query } from "@nestjs/common";
 import { AlunoService } from "./aluno.service";
-import { ValidationView, toBoolean } from 'nest-validation-view';
+import { ValidationView} from 'nest-validation-view';
 import { CreateAlunoDto } from "./dtos/create-aluno.dto";
 import { UpdateAlunoDto } from "./dtos/update-aluno.dto";
 
