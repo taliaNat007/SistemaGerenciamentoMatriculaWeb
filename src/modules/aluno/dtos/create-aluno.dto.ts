@@ -1,17 +1,4 @@
-import { Type, Transform } from "class-transformer";
 import { IsNotEmpty, MinLength, IsOptional, IsString, IsDateString } from "class-validator";
-
-const toDecimalNumber = (value: unknown): unknown => {
-  const normalizedValue: unknown = Array.isArray(value)
-    ? (value as unknown[])[value.length - 1]
-    : value;
-
-  if (typeof normalizedValue === 'string') {
-    return Number(normalizedValue.replace(',', '.'));
-  }
-
-  return normalizedValue;
-};
 
 export class CreateAlunoDto {
 

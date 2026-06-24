@@ -6,7 +6,7 @@ import { BadRequestException } from '@nestjs/common';
 import { Like } from "typeorm";
 
 @Injectable()
-export class AlunoService {     
+export class AlunoService {
     async findAll(
         pesquisa?: string
     ): Promise<Aluno[]> {
@@ -49,28 +49,28 @@ export class AlunoService {
 
         return await aluno.save();
     }
-    
+
     async update(id: number, dados: UpdateAlunoDto): Promise<Aluno | null> {
         const aluno = await this.findOne(id);
 
-        if(!aluno) {
+        if (!aluno) {
             return null;
         }
 
-        Object.assign(aluno, { ...dados});
+        Object.assign(aluno, { ...dados });
 
-        return aluno.save(); 
+        return aluno.save();
     }
 
     async remove(id: number): Promise<Aluno | null> {
         const aluno = await this.findOne(id);
 
-        if(!aluno) {
+        if (!aluno) {
             return null;
         }
 
         return aluno.remove();
     }
 
-   
+
 }

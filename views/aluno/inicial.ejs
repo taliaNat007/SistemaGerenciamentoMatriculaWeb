@@ -14,24 +14,18 @@
         </ol>
     </div>
 </div>
-<!-- row -->
 
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                
+
                 <div class="basic-form flex-grow-1">
                     <form>
                         <div class="form-row">
                             <div class="col-lg-10">
-                                    <input
-                                        type="text"
-                                        name="pesquisa"
-                                        class="form-control"
-                                        placeholder="Pesquisar aluno..."
-                                        value="<%= pesquisa || '' %>"
-                                    >
+                                <input type="text" name="pesquisa" class="form-control" placeholder="Pesquisar aluno..."
+                                    value="<%= pesquisa || '' %>">
                             </div>
                             <div class="col-lg-2 mt-2 mt-lg-0">
                                 <button type="submit" class="btn btn-warning mb-2">Pesquisar</button>
@@ -58,14 +52,26 @@
                         </thead>
                         <tbody>
 
-                            <% for( let index = 0; index < alunos.length; index++ ) { %>
+                            <% for( let index=0; index < alunos.length; index++ ) { %>
                                 <tr>
-                                    <td><%= index + 1 %></td>
-                                    <td><%= alunos[index].nome %></td>
-                                    <td><%= alunos[index].cpf %></td>
-                                    <td><%= alunos[index].nivelAtual %></td>
-                                    <td><%= new Date(alunos[index].dataNascimento).toLocaleDateString('pt-BR') %></td>
-                                    <td><%= dateFormat(alunos[index].dataCadastro) %></td>
+                                    <td>
+                                        <%= index + 1 %>
+                                    </td>
+                                    <td>
+                                        <%= alunos[index].nome %>
+                                    </td>
+                                    <td>
+                                        <%= alunos[index].cpf %>
+                                    </td>
+                                    <td>
+                                        <%= alunos[index].nivelAtual %>
+                                    </td>
+                                    <td>
+                                        <%= new Date(alunos[index].dataNascimento).toLocaleDateString('pt-BR') %>
+                                    </td>
+                                    <td>
+                                        <%= dateFormat(alunos[index].dataCadastro) %>
+                                    </td>
                                     <td>
                                         <a href="/alunos/<%= alunos[index].id %>/editar" class="text-warning mr-1">
                                             <i class="fa fa-pencil fa-lg"></i>
@@ -73,12 +79,13 @@
                                         <a href="/alunos/<%= alunos[index].id %>/excluir" class="text-danger">
                                             <i class="fa fa-trash fa-lg"></i>
                                         </a>
-                                        
-                                        <a href="#" class="text-secondary remover" data-name="<%= alunos[index].nome %>" data-id="<%= alunos[index].id %>">
+
+                                        <a href="#" class="text-secondary remover" data-name="<%= alunos[index].nome %>"
+                                            data-id="<%= alunos[index].id %>">
                                         </a>
                                     </td>
                                 </tr>
-                            <% } %>
+                                <% } %>
 
                         </tbody>
                     </table>

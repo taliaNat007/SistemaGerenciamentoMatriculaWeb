@@ -8,4 +8,4 @@ import { AlunoModule } from "../aluno/aluno.module";
     controllers: [AvaliacaoController],
     providers: [AvaliacaoService]
 })
-export class AvaliacaoModule {}
+export class AvaliacaoModule { }

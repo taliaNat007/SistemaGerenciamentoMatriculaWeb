@@ -8,7 +8,7 @@ export class AppController {
   @Get()
   @Render('inicial')
   getHello(): object {
-    
+
     return {
       titulo: 'Gerenciamento de Alunos Musicistas',
       horaAgora: new Date().toLocaleString('pt-BR'),
@@ -23,5 +23,5 @@ export class AppController {
     };
   }
 
-  
+
 }

@@ -17,6 +17,13 @@ A aplicação tem como objetivo principal digitalizar e otimizar o gerenciamento
 - Consultar e atualizar informações de forma rápida e eficiente;
 - Manter o histórico de avaliações e evolução dos alunos.
 
+## Instruções para rodar o sistema
+- Renomeie o arquivo ".env.exemplo" e configure as informações do banco de dados: DB_PORT, DB_PASSWORD.
+- No arquivo "database.providers.ts" configure os campos: port, password. 
+- Após configurar esses arquivos, instale o pacote: "npm install"
+- Rode o arquivo com o comando: "npm run start:dev"
+- Abra o arquivo no navegador: http://localhost:3000/
+
 ## Integrantes da Equipe
 
 - Lucas da Silva Nunes
