@@ -1,6 +1,18 @@
-import { Body, Controller, Get, Post, Redirect, Render, Param, HttpCode, Query } from "@nestjs/common";
+import {
+    Body,
+    Controller,
+    Get,
+    Post,
+    Redirect,
+    Render,
+    Param,
+    HttpCode,
+    Query
+} from "@nestjs/common";
+
 import { AvaliacaoService } from "./avaliacao.service";
 import { AlunoService } from "../aluno/aluno.service";
+import { Aluno } from "../aluno/aluno.entity";
 import { CreateAvaliacaoDto } from "./dtos/create-avalicao.dtos";
 
 @Controller('avaliacoes')
@@ -28,13 +40,21 @@ export class AvaliacaoController {
 
     @Get('criar')
     @Render('avaliacao/formulario')
-    async formularioCriar(): Promise<object> {
+    async formularioCriar(
+        @Query('alunoId') alunoId?: string
+    ): Promise<object> {
 
-        const alunos = await this.alunoService.findAll();
+        let aluno: Aluno | null = null;
+
+        if (alunoId) {
+            aluno = await this.alunoService.findOne(
+                Number(alunoId)
+            );
+        }
 
         return {
             titulo: 'Nova Avaliação',
-            alunos,
+            aluno,
             avaliacao: null
         };
     }
@@ -42,7 +62,8 @@ export class AvaliacaoController {
     @Post('criar')
     @Redirect('/avaliacoes')
     async formularioCriarSalvar(
-        @Body() dados: CreateAvaliacaoDto): Promise<void> {
+        @Body() dados: CreateAvaliacaoDto
+    ): Promise<void> {
 
         await this.avalicaoService.create(dados);
     }
@@ -59,12 +80,10 @@ export class AvaliacaoController {
             throw new Error('Avaliação não encontrada!');
         }
 
-        const alunos = await this.alunoService.findAll();
-
         return {
             titulo: 'Edição de Avaliação',
             avaliacao,
-            alunos
+            aluno: avaliacao.aluno
         };
     }
 
@@ -72,7 +91,8 @@ export class AvaliacaoController {
     @Redirect('/avaliacoes')
     async formEditarSalvar(
         @Param('id') id: number,
-        @Body() dados: CreateAvaliacaoDto): Promise<void> {
+        @Body() dados: CreateAvaliacaoDto
+    ): Promise<void> {
 
         await this.avalicaoService.update(id, dados);
     }
@@ -86,7 +106,7 @@ export class AvaliacaoController {
         const avaliacao = await this.avalicaoService.findOne(id);
 
         if (!avaliacao) {
-            throw new Error('Avalição não encontrada!');
+            throw new Error('Avaliação não encontrada!');
         }
 
         return {

@@ -24,22 +24,9 @@
                     <div class="form-group mb-3">
                         <label for="alunoId">Aluno</label>
 
-                        <select name="alunoId" id="alunoId" class="form-control" required>
-                            <option value="">
-                                Selecione o Aluno
-                            </option>
+                        <input type="text" class="form-control" value="<%= aluno ? aluno.nome : '' %>" readonly>
+                        <input type="hidden" name="alunoId" value="<%= aluno ? aluno.id : '' %>">
 
-                            <% alunos.forEach(aluno=> { %>
-
-                                <option value="<%= aluno.id %>" <%=avaliacao && avaliacao.aluno &&
-                                    avaliacao.aluno.id===aluno.id ? 'selected' : '' %>
-                                    >
-                                    <%= aluno.nome %>
-                                </option>
-
-                                <% }) %>
-
-                        </select>
                     </div>
 
                     <div class="form-group mb-3">

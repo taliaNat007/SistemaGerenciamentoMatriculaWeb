@@ -30,6 +30,7 @@ export class AlunoService {
         });
     }
 
+    
     async create(dados: CreateAlunoDto): Promise<Aluno> {
 
         const alunoExistente = await Aluno.findOne({
@@ -39,6 +40,7 @@ export class AlunoService {
         if (alunoExistente) {
             throw new BadRequestException('Este CPF já está cadastrado');
         }
+    console.log('DATA RECEBIDA:', dados.dataNascimento);
 
         const aluno = Aluno.create({
             nome: dados.nome,
@@ -46,6 +48,7 @@ export class AlunoService {
             dataNascimento: dados.dataNascimento,
             nivelAtual: dados.nivelAtual,
         });
+    console.log('DATA NO ALUNO:', aluno.dataNascimento);
 
         return await aluno.save();
     }

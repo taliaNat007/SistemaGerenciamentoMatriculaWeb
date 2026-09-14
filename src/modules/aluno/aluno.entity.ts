@@ -15,7 +15,7 @@ export class Aluno extends BaseEntity {
     nivelAtual?: string;
 
     @Column({ type: 'date' })
-    dataNascimento!: Date;
+    dataNascimento!: string;
 
     @CreateDateColumn()
     dataCadastro!: Date;
